@@ -1,33 +1,61 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import './person-details.css';
+import "./person-details.css";
+import SwapiService from "../../services/swapi-service";
+import Spinner from "../spinner";
+import PersonView from "./person-view";
 
 export default class PersonDetails extends Component {
+  swapiService = new SwapiService();
+
+  state = {
+    person: null,
+    loading: true,
+  };
+
+  componentDidMount = () => {
+    this.updatePerson();
+  };
+
+  componentDidUpdate = (prevProps) => {
+    if (this.props.personId !== prevProps.personId) {
+      this.updatePerson();
+    }
+  };
+
+  onPersonLoaded = () => {
+    this.setState({
+      loading: false,
+    });
+  };
+
+  updatePerson = () => {
+    this.setState({ loading: true });
+    const { personId } = this.props;
+
+    if (!personId) {
+      return;
+    }
+
+    this.swapiService.getPerson(personId).then((person) => {
+      this.onPersonLoaded(person);
+      this.setState({ person });
+    });
+
+    console.log(this.state);
+  };
 
   render() {
-    return (
-      <div className="person-details card">
-        <img className="person-image"
-          src="https://starwars-visualguide.com/assets/img/characters/3.jpg" />
+    if (!this.state.person) {
+      return <span>Please, select a person from a list</span>;
+    }
 
-        <div className="card-body">
-          <h4>R2-D2</h4>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">
-              <span className="term">Gender</span>
-              <span>male</span>
-            </li>
-            <li className="list-group-item">
-              <span className="term">Birth Year</span>
-              <span>43</span>
-            </li>
-            <li className="list-group-item">
-              <span className="term">Eye Color</span>
-              <span>red</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    )
+    const content = this.state.loading ? (
+      <Spinner />
+    ) : (
+      <PersonView person={this.state.person} />
+    );
+
+    return <div className="person-details card">{content}</div>;
   }
 }
