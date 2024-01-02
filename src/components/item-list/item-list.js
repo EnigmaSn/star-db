@@ -38,6 +38,7 @@ export default class ItemList extends Component {
     if (!peopleList) {
       return <Spinner />;
     }
+
     const items = this.renderItems(peopleList);
     return <ul className="item-list list-group">{items}</ul>;
   }
