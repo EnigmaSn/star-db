@@ -11,7 +11,6 @@ import "./app.css";
 export default class App extends Component {
   state = {
     showRandomPlanet: true,
-    selectedPerson: null,
     hasError: false,
   };
 
@@ -25,10 +24,6 @@ export default class App extends Component {
         showRandomPlanet: !state.showRandomPlanet,
       };
     });
-  };
-
-  onPersonSelected = (id) => {
-    this.setState({ selectedPerson: id });
   };
 
   render() {
