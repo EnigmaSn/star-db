@@ -8,14 +8,15 @@ export default class ItemList extends Component {
   swapiService = new SwapiService();
 
   state = {
-    peopleList: null,
-    selectedPerson: null,
+    itemList: null,
   };
 
   componentDidMount() {
-    this.swapiService.getAllPeople().then((peopleList) => {
+    const { getData } = this.props;
+
+    getData().then((itemList) => {
       this.setState({
-        peopleList: peopleList,
+        itemList,
       });
     });
   }
@@ -34,12 +35,12 @@ export default class ItemList extends Component {
     });
   };
   render() {
-    const { peopleList } = this.state;
-    if (!peopleList) {
+    const { itemList } = this.state;
+    if (!itemList) {
       return <Spinner />;
     }
 
-    const items = this.renderItems(peopleList);
+    const items = this.renderItems(itemList);
     return <ul className="item-list list-group">{items}</ul>;
   }
 }

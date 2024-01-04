@@ -41,8 +41,6 @@ export default class PersonDetails extends Component {
       this.onPersonLoaded(person);
       this.setState({ person });
     });
-
-    console.log(this.state);
   };
 
   render() {
