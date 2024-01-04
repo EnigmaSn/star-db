@@ -55,25 +55,16 @@ export default class App extends Component {
         itemId={5}
         getData={getStarship}
         getImageUrl={getStarshipImage}
-      />
+      >
+        <Record field="model" label="Model" />
+        <Record field="length" label="Length" />
+        <Record field="manufacturer" label="Manufacturer" />
+      </ItemDetails>
     );
 
     return (
       <div className="stardb-app">
         <Header />
-        {/* {planet}
-
-          <div className="row mb2 button-row">
-            <button
-              className="toggle-planet btn btn-warning btn-lg"
-              onClick={this.toggleRandomPlanet}
-            >
-              Toggle Random Planet
-            </button>
-            <ErrorButton />
-          </div>
-
-          <PeoplePage /> */}
         <Row left={personDetails} right={starshipDetails} />
       </div>
     );

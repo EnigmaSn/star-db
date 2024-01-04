@@ -6,11 +6,12 @@ import Spinner from "../spinner";
 import ItemView from "./item-view";
 import ErrorButton from "../error-button";
 
-export const Record = ({ field, label }) => {
+export const Record = ({ item, field, label }) => {
+  console.log(item);
   return (
     <li className="list-group-item">
       <span className="term">{label}</span>
-      <span>{field}</span>
+      <span>{item[field]}</span>
     </li>
   );
 };
@@ -57,6 +58,7 @@ export default class ItemDetails extends Component {
     });
   };
 
+  // TODO пробросить children в item-view
   // render() {
   //   const children = this.props.children;
   //   if (!this.state.item) {
