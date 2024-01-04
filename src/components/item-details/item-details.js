@@ -10,6 +10,7 @@ export default class ItemDetails extends Component {
 
   state = {
     item: null,
+    image: null,
     loading: true,
   };
 
@@ -31,15 +32,18 @@ export default class ItemDetails extends Component {
 
   updateItem = () => {
     this.setState({ loading: true });
-    const { itemId } = this.props;
+    const { itemId, getData, getImageUrl } = this.props;
 
     if (!itemId) {
       return;
     }
 
-    this.swapiService.getPerson(itemId).then((item) => {
-      this.onItemLoaded(item);
-      this.setState({ item });
+    getData(itemId).then((item) => {
+      this.onItemLoaded();
+      this.setState({
+        item,
+        image: getImageUrl(itemId),
+      });
     });
   };
 
@@ -51,9 +55,12 @@ export default class ItemDetails extends Component {
     const content = this.state.loading ? (
       <Spinner />
     ) : (
-      <ItemView item={this.state.item} />
+      <ItemView data={this.state} />
     );
 
+    if (!this.state.item) {
+      return;
+    }
     return <div className="item-details card">{content}</div>;
   }
 }

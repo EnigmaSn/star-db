@@ -1,16 +1,17 @@
 import React from "react";
 import ErrorButton from "../error-button";
 
-const ItemView = ({ item }) => {
-  const { id, name, gender, birthYear, eyeColor } = item;
+const ItemView = ({ data }) => {
+  console.log("content", data);
+  console.log("item", data.item);
+  console.log("image", data.image);
+
+  const { id, name, gender, birthYear, eyeColor } = data.item;
+  const { image } = data;
 
   return (
     <>
-      <img
-        className="item-image"
-        alt="item"
-        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
-      />
+      <img className="item-image" alt="item" src={image} />
 
       <div className="card-body">
         <h4>{name}</h4>
