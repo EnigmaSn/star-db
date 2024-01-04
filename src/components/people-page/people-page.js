@@ -5,6 +5,7 @@ import PersonDetails from "../person-details/person-details";
 import ErrorIndicator from "../error-indicator/error-indicator";
 import SwapiService from "../../services/swapi-service";
 import Row from "../row/row";
+import ErrorBoundry from "../error-boundry/error-boundry";
 
 import "./people-page.css";
 
@@ -42,7 +43,9 @@ export default class PeoplePage extends Component {
     );
 
     const personDetails = (
-      <PersonDetails personId={this.state.selectedPerson} />
+      <ErrorBoundry>
+        <PersonDetails personId={this.state.selectedPerson} />
+      </ErrorBoundry>
     );
 
     return <Row left={itemList} right={personDetails} />;
