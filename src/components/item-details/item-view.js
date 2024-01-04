@@ -1,14 +1,14 @@
 import React from "react";
 import ErrorButton from "../error-button";
 
-const PersonView = ({ person }) => {
-  const { id, name, gender, birthYear, eyeColor } = person;
+const ItemView = ({ item }) => {
+  const { id, name, gender, birthYear, eyeColor } = item;
 
   return (
     <>
       <img
-        className="person-image"
-        alt="person"
+        className="item-image"
+        alt="item"
         src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
       />
 
@@ -34,4 +34,4 @@ const PersonView = ({ person }) => {
   );
 };
 
-export default PersonView;
+export default ItemView;
