@@ -7,7 +7,8 @@ import ErrorIndicator from "../error-indicator/error-indicator";
 import PeoplePage from "../people-page/people-page";
 import SwapiService from "../../services/swapi-service";
 import ItemList from "../item-list/item-list";
-import ItemDetails from "../item-details/item-details";
+import ItemDetails, { Record } from "../item-details/item-details";
+// import { Record } from "../item-details/item-view";
 import Row from "../row/row";
 
 import "./app.css";
@@ -44,11 +45,10 @@ export default class App extends Component {
       this.swapiService;
 
     const personDetails = (
-      <ItemDetails
-        itemId={11}
-        getData={getPerson}
-        getImageUrl={getPersonImage}
-      />
+      <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage}>
+        <Record field="gender" label="Gender" />
+        <Record field="eyeColor" label="Eye color" />
+      </ItemDetails>
     );
     const starshipDetails = (
       <ItemDetails
