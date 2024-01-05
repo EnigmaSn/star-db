@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 
-import "./item-details.css";
-import SwapiService from "../../services/swapi-service";
-import Spinner from "../spinner";
-import ItemView from "./item-view";
-import ErrorButton from "../error-button";
+import ErrorButton from "../error-button/error-button";
 
-export const Record = ({ item, field, label }) => {
-  console.log(item);
+import "./item-details.css";
+
+const Record = ({ item, field, label }) => {
   return (
     <li className="list-group-item">
       <span className="term">{label}</span>
@@ -16,67 +13,37 @@ export const Record = ({ item, field, label }) => {
   );
 };
 
-export default class ItemDetails extends Component {
-  swapiService = new SwapiService();
+export { Record };
 
+export default class ItemDetails extends Component {
   state = {
     item: null,
     image: null,
-    loading: true,
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.updateItem();
-  };
+  }
 
-  componentDidUpdate = (prevProps) => {
+  componentDidUpdate(prevProps) {
     if (this.props.itemId !== prevProps.itemId) {
       this.updateItem();
     }
-  };
+  }
 
-  onItemLoaded = () => {
-    this.setState({
-      loading: false,
-    });
-  };
-
-  updateItem = () => {
-    this.setState({ loading: true });
+  updateItem() {
     const { itemId, getData, getImageUrl } = this.props;
-
     if (!itemId) {
       return;
     }
 
     getData(itemId).then((item) => {
-      this.onItemLoaded();
       this.setState({
         item,
-        image: getImageUrl(itemId),
+        image: getImageUrl(item),
       });
     });
-  };
-
-  // TODO пробросить children в item-view
-  // render() {
-  //   const children = this.props.children;
-  //   if (!this.state.item) {
-  //     return <span>Please, select a item from a list</span>;
-  //   }
-  //   console.log("children", children);
-
-  //   const content = this.state.loading ? (
-  //     <Spinner />
-  //   ) : (
-  //     <ItemView data={this.state}>text</ItemView>
-  //   );
-
-  //   if (!this.state.item) {
-  //     return;
-  //   }
-  //   return <div className="item-details card">{content}</div>;
-  // }
+  }
 
   render() {
     const { item, image } = this.state;
@@ -84,7 +51,7 @@ export default class ItemDetails extends Component {
       return <span>Select a item from a list</span>;
     }
 
-    const { id, name, gender, birthYear, eyeColor } = item;
+    const { name } = item;
 
     return (
       <div className="item-details card">
