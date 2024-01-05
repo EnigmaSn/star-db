@@ -1,6 +1,6 @@
 import React from "react";
-import ItemDetails, { Record } from "../item-details/item-details";
-import withSwapiService from "../hoc-helpers/with-swapi-service";
+import ItemDetails, { Record } from "../item-details";
+import { withSwapiService } from "../hoc-helpers";
 
 const StarshipDetails = (props) => {
   return (
@@ -19,4 +19,4 @@ const mapMethodsToProps = (swapiService) => {
   };
 };
 
-export default withSwapiService(StarshipDetails, mapMethodsToProps);
+export default withSwapiService(mapMethodsToProps)(StarshipDetails);
