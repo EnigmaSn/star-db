@@ -13,7 +13,12 @@ import {
   SecretPage,
 } from "../pages";
 import { SwapiServiceProvider } from "../swapi-service-context";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Switch,
+} from "react-router-dom";
 
 export default class App extends Component {
   state = {
@@ -52,19 +57,19 @@ export default class App extends Component {
                 <Route path="people/:id?" element={<PeoplePage />} />
                 <Route path="planets/:id?" element={<PlanetsPage />} />
                 <Route path="starships/:id?" element={<StarshipsPage />} />
-
                 <Route
                   path="/login"
                   element={
-                    // <LoginPage />
                     <LoginPage isLoggedIn={isLoggedIn} onLogin={this.onLogin} />
                   }
                 />
-
                 <Route
                   path="/secret"
-                  // element={<SecretPage />}
                   element={<SecretPage isLoggedIn={isLoggedIn} />}
+                />
+                <Route
+                  path="*"
+                  element={<h2>Page was destroyed by Death Star</h2>}
                 />
               </Routes>
             </div>
