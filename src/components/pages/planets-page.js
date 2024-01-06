@@ -8,8 +8,7 @@ const PlanetsPage = () => {
   return (
     <PlanetList
       onItemSelected={(itemId) => {
-        const newPath = `/planets/${itemId}`;
-        navigate(newPath);
+        navigate(itemId);
       }}
     />
   );

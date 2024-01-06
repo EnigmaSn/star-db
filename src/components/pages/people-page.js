@@ -8,8 +8,7 @@ const PeoplePage = () => {
   return (
     <PersonList
       onItemSelected={(itemId) => {
-        const newPath = `/people/${itemId}`;
-        navigate(newPath);
+        navigate(itemId);
       }}
     />
   );
