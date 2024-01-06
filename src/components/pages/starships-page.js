@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Row from "../row";
 import { StarshipList, StarshipDetails } from "../sw-components";
+import { withRouter } from "../hoc-helpers";
 
 const StarshipsPage = (props) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const StarshipsPage = (props) => {
       left={
         <StarshipList
           onItemSelected={(itemId) => {
-            navigate(itemId);
+            navigate(`starships/${itemId}`);
           }}
         />
       }
@@ -21,4 +22,4 @@ const StarshipsPage = (props) => {
   );
 };
 
-export default StarshipsPage;
+export default withRouter(StarshipsPage);
