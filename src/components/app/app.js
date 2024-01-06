@@ -69,7 +69,7 @@ export default class App extends Component {
                 />
                 <Route
                   path="*"
-                  element={<h2>Page was destroyed by Death Star</h2>}
+                  element={<h2>This page was destroyed by Death Star</h2>}
                 />
               </Routes>
             </div>
