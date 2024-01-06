@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import "./header.css";
 
@@ -6,17 +7,17 @@ const Header = ({ onServiceChange }) => {
   return (
     <div className="header d-flex">
       <h3>
-        <a href="#/">StarDB</a>
+        <NavLink to="/">StarDB</NavLink>
       </h3>
       <ul className="d-flex">
         <li>
-          <a href="#/people">People</a>
+          <NavLink to="/people">People</NavLink>
         </li>
         <li>
-          <a href="#/planets">Planets</a>
+          <NavLink to="/planets">Planets</NavLink>
         </li>
         <li>
-          <a href="#/starships">Starships</a>
+          <NavLink to="/starships">Starships</NavLink>
         </li>
       </ul>
 
