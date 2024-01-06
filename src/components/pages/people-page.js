@@ -1,17 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { PersonList } from "../sw-components";
+import { PersonList, PersonDetails } from "../sw-components";
+import Row from "../row";
+import { withRouter } from "../hoc-helpers";
 
-const PeoplePage = () => {
+const PeoplePage = (props) => {
   const navigate = useNavigate();
-
+  const { id } = props.params;
   return (
-    <PersonList
-      onItemSelected={(itemId) => {
-        navigate(itemId);
-      }}
+    <Row
+      left={
+        <PersonList
+          onItemSelected={(itemId) => {
+            navigate(`/people/${itemId}`);
+          }}
+        />
+      }
+      right={<PersonDetails itemId={id} />}
     />
   );
 };
 
-export default PeoplePage;
+export default withRouter(PeoplePage);

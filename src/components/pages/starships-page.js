@@ -1,14 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { StarshipList } from "../sw-components";
+import Row from "../row";
+import { StarshipList, StarshipDetails } from "../sw-components";
 
-const StarshipsPage = () => {
+const StarshipsPage = (props) => {
   const navigate = useNavigate();
+  const { id } = props.params;
+
   return (
-    <StarshipList
-      onItemSelected={(itemId) => {
-        navigate(itemId);
-      }}
+    <Row
+      left={
+        <StarshipList
+          onItemSelected={(itemId) => {
+            navigate(itemId);
+          }}
+        />
+      }
+      right={<StarshipDetails itemId={id} />}
     />
   );
 };
