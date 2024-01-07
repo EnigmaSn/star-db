@@ -13,12 +13,7 @@ import {
   SecretPage,
 } from "../pages";
 import { SwapiServiceProvider } from "../swapi-service-context";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default class App extends Component {
   state = {
